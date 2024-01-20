@@ -122,7 +122,7 @@ input, button {
   left: 0;
   width: 100%;
   z-index: 50;
-  background-color: var(--accent);
+  background-color: black;
   transition: background-color 0.3s;
 }
 .nav-inner {
@@ -157,22 +157,23 @@ input, button {
 }
 footer {
   width: 100%;
-  background-color: var(--accent);
+  background-color: black;
   transition: background-color 0.3s;
   color: #fff;
+  position: fixed;
+  bottom: 0;
 }
 footer a {
   color: #fff;
 }
 footer h3 {
-  font-weight: 400;
+  font-weight: 300;
 }
 .footer-content {
-  margin: auto;
   padding: 4em 2em;
+  margin: auto;
   max-width: calc(1000px + 4em);
   display: flex;
-  height: 100%;
   align-items: stretch;
 }
 .footer-left, .footer-right {
@@ -182,15 +183,6 @@ footer h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.footer-logo {
-  padding: 1em 2em;
-  background-color: #fff;
-  border-radius: 20em;
-  margin-top: 1.5em;
-}
-.footer-right .middle {
-  margin: 1em 0;
 }
 .clear-selection {
   background-color: rgba(0, 0, 0, 0.7);

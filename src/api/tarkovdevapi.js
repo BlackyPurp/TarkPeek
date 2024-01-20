@@ -3,9 +3,22 @@ async function searchItem(iName){
     var {request,gql} = require('graphql-request');
     const query = gql`{
         items(name: "${iName}"){
-            id
             name
-            shortName
+            image8xLink
+            usedInTasks{
+              name
+              objectives{
+                ... on TaskObjectiveItem{
+                  item{
+                    name
+                  }
+                    count
+                }
+              }
+              trader{
+                name
+              }
+            }
         }
     }`
     return request(apiEndpoint, query);

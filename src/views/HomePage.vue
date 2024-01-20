@@ -3,7 +3,7 @@
     <div class="content">
       <div class="landing">
         <h1>TarkPeek</h1>
-        <h3>The fast and easy to use Tarkv Item Search Engine.</h3>
+        <h3>The fast and easy to use Tarkov Item Search Engine</h3>
         <input autofocus class="main-search" v-on:keyup.enter="searchFunc" v-model="searchInput" type="text" placeholder="Type in a Item">
       </div>
     </div>
@@ -12,6 +12,7 @@
 
 <script>
 import { searchItem } from '../api/tarkovdevapi.js'
+import { mapMutations } from 'vuex';
 
 export default {
   data () {
@@ -23,8 +24,8 @@ export default {
     async searchFunc () {
       this.searchQuery = this.searchInput
       var que = this.searchQuery;
-      var itm = await searchItem(que);
-      console.log(itm.items)
+      const itm = await searchItem(que);
+
       if(itm.items.length === 0){
         this.$router.push({ path: '/failed', query: {q: this.searchInput} })
       }
@@ -32,11 +33,13 @@ export default {
         this.$router.push({ path: '/results', query: {q: this.searchInput} })
       }
       if(itm.items.length === 1){
-        this.$router.push({ path: '/itemResult', query: { q: this.searchInput } })
+        this.setItmData(itm.items[0]);
+        this.$router.push({ path: '/itemResult', query: {q: this.searchInput} })
       }
-    }
-  }
-}
+    },
+    ...mapMutations(['setItmData']),
+  },
+};
 </script>
 
 <style scoped>
